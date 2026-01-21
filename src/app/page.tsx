@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 import { getFundLabel, formatDate } from "@/lib/utils";
 
-// Demo data - in production, this would come from the database
 const DEMO_EVENTS = [
   {
     id: "event-1",
@@ -48,7 +47,6 @@ const DEMO_EVENTS = [
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
@@ -60,41 +58,25 @@ export default function HomePage() {
             </div>
             <div className="flex items-center gap-4">
               <nav className="flex items-center gap-6">
-                <Link href="/" className="text-sm font-medium text-gray-900">
-                  Dashboard
-                </Link>
-                <Link href="/" className="text-sm text-gray-500 hover:text-gray-900">
-                  Événements
-                </Link>
+                <Link href="/" className="text-sm font-medium text-gray-900">Dashboard</Link>
+                <Link href="/" className="text-sm text-gray-500 hover:text-gray-900">Événements</Link>
               </nav>
-              <div className="w-8 h-8 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-medium text-sm">
-                SD
-              </div>
+              <div className="w-8 h-8 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center font-medium text-sm">SD</div>
             </div>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-8">
-          {/* Page Header */}
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Tableau de bord
-              </h1>
-              <p className="text-gray-500 mt-1">
-                Gérez vos Advisory Committees et Advisory Boards
-              </p>
+              <h1 className="text-2xl font-bold text-gray-900">Tableau de bord</h1>
+              <p className="text-gray-500 mt-1">Gérez vos Advisory Committees et Advisory Boards</p>
             </div>
-            <Button>
-              <Plus className="h-4 w-4 mr-2" />
-              Nouvel événement
-            </Button>
+            <Button><Plus className="h-4 w-4 mr-2" />Nouvel événement</Button>
           </div>
 
-          {/* Events Grid */}
           <div className="grid gap-6 md:grid-cols-2">
             {DEMO_EVENTS.map((event) => (
               <Link key={event.id} href={`/events/${event.id}`}>
@@ -104,25 +86,13 @@ export default function HomePage() {
                       <div className="space-y-1">
                         <CardTitle className="text-lg">{event.name}</CardTitle>
                         <div className="flex items-center gap-2 text-sm text-gray-500">
-                          <MapPin className="h-4 w-4" />
-                          {event.city}, {event.country}
+                          <MapPin className="h-4 w-4" />{event.city}, {event.country}
                         </div>
                       </div>
-                      <Badge
-                        variant={
-                          event.status === "LOCKED"
-                            ? "info"
-                            : event.status === "LIVE"
-                            ? "success"
-                            : "secondary"
-                        }
-                      >
-                        {event.status}
-                      </Badge>
+                      <Badge variant={event.status === "LOCKED" ? "info" : event.status === "LIVE" ? "success" : "secondary"}>{event.status}</Badge>
                     </div>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    {/* Fund & Date */}
                     <div className="flex items-center gap-4 text-sm">
                       <div className="flex items-center gap-1.5">
                         <Building2 className="h-4 w-4 text-gray-400" />
@@ -133,8 +103,6 @@ export default function HomePage() {
                         <span>{formatDate(event.selectedWeek)}</span>
                       </div>
                     </div>
-
-                    {/* Progress */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between text-sm">
                         <span className="text-gray-500">Progression</span>
@@ -142,25 +110,15 @@ export default function HomePage() {
                       </div>
                       <Progress value={event.progress} />
                     </div>
-
-                    {/* Stats */}
                     <div className="flex items-center justify-between pt-2 border-t">
                       <div className="flex items-center gap-1.5 text-sm">
                         <Users className="h-4 w-4 text-gray-400" />
-                        <span>
-                          {event.participantsConfirmed}/{event.participantsTotal}{" "}
-                          confirmés
-                        </span>
+                        <span>{event.participantsConfirmed}/{event.participantsTotal} confirmés</span>
                       </div>
-                      <div className="text-sm text-gray-500">
-                        {event.tasksCompleted}/{event.tasksTotal} tâches
-                      </div>
+                      <div className="text-sm text-gray-500">{event.tasksCompleted}/{event.tasksTotal} tâches</div>
                     </div>
-
-                    {/* CTA */}
                     <div className="flex items-center justify-end text-sm font-medium text-blue-600">
-                      Voir les détails
-                      <ArrowRight className="h-4 w-4 ml-1" />
+                      Voir les détails<ArrowRight className="h-4 w-4 ml-1" />
                     </div>
                   </CardContent>
                 </Card>
@@ -168,32 +126,11 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* Quick Stats */}
           <div className="grid gap-4 md:grid-cols-4">
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold">2</div>
-                <p className="text-sm text-gray-500">Événements actifs</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold">14</div>
-                <p className="text-sm text-gray-500">Participants totaux</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold">33</div>
-                <p className="text-sm text-gray-500">Tâches complétées</p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="text-2xl font-bold text-orange-600">48j</div>
-                <p className="text-sm text-gray-500">Prochain événement</p>
-              </CardContent>
-            </Card>
+            <Card><CardContent className="pt-6"><div className="text-2xl font-bold">2</div><p className="text-sm text-gray-500">Événements actifs</p></CardContent></Card>
+            <Card><CardContent className="pt-6"><div className="text-2xl font-bold">14</div><p className="text-sm text-gray-500">Participants totaux</p></CardContent></Card>
+            <Card><CardContent className="pt-6"><div className="text-2xl font-bold">33</div><p className="text-sm text-gray-500">Tâches complétées</p></CardContent></Card>
+            <Card><CardContent className="pt-6"><div className="text-2xl font-bold text-orange-600">48j</div><p className="text-sm text-gray-500">Prochain événement</p></CardContent></Card>
           </div>
         </div>
       </main>
